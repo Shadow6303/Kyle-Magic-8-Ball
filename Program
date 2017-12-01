@@ -1,0 +1,244 @@
+import random
+from enchant.checker import SpellChecker
+import time
+
+def ask():
+    roll = int(random.random() * 3) + 1
+    if roll == 1:
+        print ("Yes!\n")
+    elif roll == 2:
+        print ("No.\n")
+    else:
+        print ("Maybe.\n")
+
+
+
+def check_input(choice):
+    while True:
+        response = raw_input().lower()
+
+        if spell_check(response) > 0:
+            ran = int(random.random() * 3) + 1
+            if ran == 1:
+                print("I didn't understand that. Also, you can't put names. Try again:")
+            elif ran == 2:
+                print("Sorry, you may have misspelled a word, or put a name. Please try again:")
+            elif ran == 3:
+                print("Please, just spell your words correctly or don't put names. "
+                      "Please try entering your sentence again.")
+        else:
+            if choice == "again":
+                if response == "yes" or response == "yea" or response == "ok":
+                    return True
+                else:
+                    return False
+            elif choice == "question":
+                if response == '':
+                    print ("You need to ask a question.")
+                elif '?' not in response:
+                    print ("Every question ends with a question mark!")
+                else:
+                    return response
+
+
+
+def getalove(response, num, repeat):
+    if 'will' in response and 'i' in response and 'get' in response and ("and 'a'" in response or 'an a' in response):
+        rand_gradeandlove('a', num, repeat, 0)
+    elif 'will' in response and 'i' in response and 'do' in response and ("well" in response or "ace" in response):
+        rand_gradeandlove('well', num, repeat, 0)
+    elif 'this' in response and 'class' in response and ("hard" in response or "difficult" in response):
+        rand_gradeandlove('hard', num, repeat, 0)
+    elif 'this' in response and 'class' in response and "easy" in response:
+        rand_gradeandlove('easy', num, repeat, 0)
+    elif 'does' in response and 'have' in response and 'crush' in response:
+        rand_gradeandlove('pie', num, repeat, 0)
+    elif 'does' in response and 'like' in response:
+        rand_gradeandlove('cake', num, repeat, 0)
+    elif 'will' in response and 'marry' in response:
+        rand_gradeandlove('chocolate', num, repeat, 0)
+    elif 'does' in response and 'love' in response:
+        rand_gradeandlove('souffle', num, repeat, 0)
+    elif 'will' in response and 'lose' in response and 'weight' in response:
+        rand_gradeandlove('skinny', num, repeat, 0)
+    elif 'will' in response in response and 'gain' in response and 'weight' in response:
+        rand_gradeandlove('kealoha', num, repeat, 0)
+    elif 'will' in response and 'muscles' in response and ('grow' in response or 'get' in response):
+        rand_gradeandlove('muscle', num, repeat, 0)
+    elif 'will' in response and 'be' in response and ('rich' in response or 'famous' in response or 'strong' in response):
+        rand_gradeandlove('ideal', num, repeat, 0)
+    elif 'will' in response and 'fall' in response and 'love' in response:
+        rand_gradeandlove('eventually', num, repeat, 0)
+    elif 'was the last question a lie' in response:
+        print("No, the Magic 8-Ball never lies.")
+        family()
+    elif "are you sure" in response:
+        print("Yes, the Magic 8-Ball is all knowing.")
+        family()
+
+
+def ai(response, repeat):
+    num = int(random.random() * 3) + 1
+
+    getalove(response, num, repeat)
+
+def rand_gradeandlove(choice, num, repeat, index):
+    repeat[index] += 1
+
+    if check_repeat(repeat, index):
+        print_repeat(num)
+
+    if choice == 'a':
+        if num == 1:
+            print ("Getting a grade in the excellent range? Magic 8-Ball replies with a...")
+        elif num == 2:
+            print ("A perfect score in a class? Wouldn't that be wonderful. Magic 8-Ball says...")
+        else:
+            print ("Hmmm... getting and 'A'? That's tough, Magic 8-Ball says...")
+    elif choice == 'well':
+        if num == 1:
+            print("That class sounds tough, but the Magic 8-Ball says...")
+        elif num == 2:
+            print("It's not gonna be easy, but the Magic 8-Ball says...")
+        elif num == 3:
+            print("Trying to make your parents proud? The Magic 8-Ball says...")
+    elif choice == 'hard':
+        if num == 1:
+            print("Worried the class will be hard? The Magic 8-Ball says...")
+        elif num == 2:
+            print("It really depends on yourself if the class is hard or not, but the Magic 8-Ball says...")
+        elif num == 3:
+            print("The class sounds difficult, but the Magic 8-Ball says...")
+    elif choice == 'easy':
+        if num == 1:
+            print("You shouldn't set your guard down, but the Magic 8-Ball says...")
+        elif num == 2:
+            print("The class sounds easy, but the Magic 8-Ball says...")
+        elif num == 3:
+            print("Sounds easy enough, but the Magic 8-Ball says...")
+    elif choice == 'pie':
+        if num == 1:
+            print("Someone has a crush on someone? The Magic 8-Ball replies...")
+        elif num == 2:
+            print("Someone crushing on someone? The Magic 8-Ball replies...")
+        elif num == 3:
+            print("That's up to them, but the Magic 8-Ball says...")
+    elif choice == 'cake':
+        if num == 1:
+            print("Like someone? The Magic 8-Ball says...")
+        elif num == 2:
+            print("Feelings for someone? The Magic 8-Ball replies...")
+        elif num == 3:
+            print("Maybe they are meant to be. The Magic 8-Ball replies...")
+    elif choice == 'chocolate':
+        if num == 1:
+            print("Maybe you are meant to be together forever. The Magic 8-Ball replies...")
+        elif num == 2:
+            print("Deep feelings for someone? That's a bit much, but the Magic 8-Ball replies...")
+        elif num == 3:
+            print("You might get married. The Magic 8-Ball replies...")
+    elif choice == 'souffle':
+        if num == 1:
+            print("Love someone? The Magic 8-Ball replies...")
+        elif num == 2:
+            print("Love can be a beautiful thing. The Magic 8-Ball replies...")
+        elif num == 3:
+            print("They may love you back. The Magic 8-Ball replies...")
+    elif choice == 'skinny':
+        if num == 1:
+            print("Want to lose weight? The Magic 8-Ball replies...")
+        elif num == 2:
+            print("It won't be easy, but the Magic 8-Ball replies...")
+        elif num == 3:
+            print("Losing weight is never easy, but the Magic 8-Ball replies...")
+    elif choice == 'kealoha':
+        if num == 1:
+            print("Some people that are too skinny want to gain weight, but the Magic 8-Ball replies...")
+        elif num == 2:
+            print("It can be easy to gain weight, but hard to lose it. The Magic 8-Ball replies...")
+        elif num == 3:
+            print("Food is so tempting that it causes many people to gain weight. The Magic 8-Ball replies...")
+    elif choice == 'muscle':
+        if num == 1:
+            print("Want to gain some muscle mass? The Magic 8-Ball replies...")
+        elif num == 2:
+            print("Trying to bulk up for a special someone? The Magic 8-Ball replies...")
+        elif num == 3:
+            print("It takes a lot of dedication to gain muscle."
+            "Are you ready for that sort of thing? The Magic 8-Ball replies...")
+    elif choice == 'ideal':
+        if num == 1:
+            print("Trying to live out the dream? The Magic 8-Ball replies...")
+        elif num == 2:
+            print("If you live out that lifestyle, you can have whatever your heart desires. "
+                  "The Magic 8-Ball replies...")
+        elif num == 3:
+            print("Trying to live out the ideal life? The Magic 8-Ball replies...")
+    elif choice == 'eventually':
+        if num == 1:
+            print("Eventually, everyone will fall in love. The Magic 8-Ball replies...")
+        elif num == 2:
+            print("It just takes the right person for someone to fall in love. The Magic 8-Ball replies...")
+        elif num == 3:
+            print("Trying to find love? The Magic 8-Ball replies...")
+
+
+def check_repeat(repeat, index):
+    if repeat[index] > 1:
+        return True
+    else:
+        return False
+
+
+def spell_check(response):
+    count = 0
+
+    chkr = SpellChecker("en_US")
+    chkr.set_text(response)
+    for err in chkr:
+        if err:
+            count += 1
+
+    return count
+
+
+def print_repeat(num):
+    if num == 1:
+        print ("Didn't you ask that question already? Anyhow ...")
+    elif num == 2:
+        print ("Is this the second time you are asking that? Geez...")
+    elif num == 3:
+        print ("Asking the same question again? Alrighty...")
+
+
+def main():
+    global name
+    repeat = [0] * 7
+    print ("Welcome to the Magic 8-Ball!")
+    time.sleep(1)
+    print("You can ask the Magic 8-Ball any question, but make sure you spell words correctly and do not put names.")
+    time.sleep(1)
+    name = raw_input("What is your name?")
+    answer = True
+    while answer:
+        print ("Hello " + name + " ask the 8-Ball a yes or no question and wait for a response:")
+        ai(check_input("question"), repeat)
+        ask()
+
+        print ("Would you like to ask another question " + name + "?")
+        answer = check_input('again')
+
+
+def family():
+    answer = True
+    repeat = [0] * 7
+    while answer:
+        print ("Would you like to ask another question " + name + "?")
+        answer = check_input('again')
+
+        print ("Hello " + name + " ask the 8-Ball a yes or no question and wait for a response:")
+        ai(check_input("question"), repeat)
+        ask()
+
+
+main()
